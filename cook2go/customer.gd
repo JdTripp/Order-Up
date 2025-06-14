@@ -4,15 +4,18 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 var target_position = Vector2.ZERO
 var has_reached_counter = false
-var order_item = "waffle_plate"  # wyyyhat the customer wants
+var order_item = "waffle_plate"  # what the customer wants
 var order_sprite = null
 var is_served = false
-var patience_timer = 15.0
+var patience_timer = 15.0  # Always 15 seconds
 var is_waiting = false
+var is_leaving = false
 
 func _ready():
 	# Start walking to serving position
 	target_position = get_node("../ServingPosition").global_position
+	print("Customer spawned at: ", global_position)
+	print("Walking to serving position: ", target_position)
 	
 	# Create order display sprite
 	order_sprite = Sprite2D.new()
@@ -28,7 +31,7 @@ func _ready():
 
 func _physics_process(delta):
 	# Handle patience timer
-	if is_waiting and not is_served:
+	if is_waiting and not is_served and not is_leaving:
 		patience_timer -= delta
 		
 		# Update timer display
@@ -41,7 +44,8 @@ func _physics_process(delta):
 			leave_restaurant()
 			return
 	
-	if target_position != Vector2.ZERO and not has_reached_counter and not is_served:
+	# Handle movement - only move if we have a target and haven't reached it yet
+	if target_position != Vector2.ZERO and global_position.distance_to(target_position) > 30:
 		var direction = (target_position - global_position).normalized()
 		velocity = direction * speed
 		
@@ -57,18 +61,30 @@ func _physics_process(delta):
 			else:
 				animated_sprite.play("walk_up")
 		
-		# Check if reached destination
-		if global_position.distance_to(target_position) < 30:
-			velocity = Vector2.ZERO
-			has_reached_counter = true
-			animated_sprite.play("idle_down")
-			show_order()
-			
 		move_and_slide()
+	else:
+		# Reached destination or close enough
+		velocity = Vector2.ZERO
+		
+		if not has_reached_counter and not is_leaving:
+			# Just reached serving position
+			has_reached_counter = true
+			animated_sprite.play("idle_down")  # Face down towards counter
+			show_order()
+			target_position = Vector2.ZERO  # Stop moving
+		elif is_leaving and global_position.distance_to(target_position) <= 30:
+			# Reached spawn point - disappear
+			disappear_and_spawn_new()
 
 func show_order():
 	# Show what the customer wants - bigger and closer
-	order_sprite.texture = get_node("../PlateWaffle").texture
+	var plate_waffle_node = get_node_or_null("../PlateWaffle")
+	if plate_waffle_node and plate_waffle_node.texture:
+		order_sprite.texture = plate_waffle_node.texture
+	else:
+		# Fallback - try to load the texture directly
+		order_sprite.texture = load("res://102_waffle_dish.png")
+	
 	order_sprite.scale = Vector2(1.5, 1.5)  # Make it bigger
 	order_sprite.position = Vector2(30, -10)  # Closer to customer
 	order_sprite.visible = true
@@ -76,7 +92,7 @@ func show_order():
 	print("Customer wants: waffle with plate! (" + str(patience_timer) + " seconds to serve)")
 
 func serve_customer(item_type):
-	if item_type == order_item:
+	if item_type == order_item and is_waiting:  # Only serve if customer is actually waiting
 		print("Customer satisfied! Order complete!")
 		is_served = true
 		is_waiting = false
@@ -89,13 +105,14 @@ func serve_customer(item_type):
 			
 		# Start walking back immediately
 		leave_restaurant()
-	else:
+	elif is_waiting:
 		print("That's not what I ordered!")
+	else:
+		print("Customer is not ready to be served!")
 
 func leave_restaurant():
-	# Walk back to spawn point
-	target_position = get_node("../CustomerSpawn").global_position
-	has_reached_counter = false
+	# Set up leaving state
+	is_leaving = true
 	is_waiting = false
 	order_sprite.visible = false
 	
@@ -104,17 +121,46 @@ func leave_restaurant():
 	if timer_label:
 		timer_label.visible = false
 	
-	# Wait until customer reaches spawn, then tell lobby to spawn new customer
-	await get_tree().create_timer(3.0).timeout
+	# Walk back to spawn point
+	target_position = get_node("../CustomerSpawn").global_position
+	has_reached_counter = false
+
+func disappear_and_spawn_new():
+	print("Customer reached spawn point - disappearing")
+	# Hide the customer completely
+	visible = false
+	set_physics_process(false)  # Stop all processing
 	
-	# Tell the lobby to spawn a new customer in 5 seconds
+	# Tell the lobby to spawn a new customer in exactly 5 seconds
 	var lobby = get_parent()
-	lobby.schedule_new_customer()
+	if lobby:
+		lobby.schedule_new_customer()
 	
-	# Don't delete - just reset position to spawn for reuse
-	global_position = get_node("../CustomerSpawn").global_position
+	# DON'T reset here - let the lobby handle it after the delay
+
+func reset_customer():
+	print("Resetting customer for reuse")
+	# Reset all states to initial values
 	has_reached_counter = false
 	is_served = false
 	is_waiting = false
-	patience_timer = 15.0
+	is_leaving = false
+	patience_timer = 15.0  # Always reset to exactly 15 seconds
+	
+	# Make customer visible and active again
+	visible = true
+	set_physics_process(true)
+	
+	# Reset position to spawn and set target
+	global_position = get_node("../CustomerSpawn").global_position
 	target_position = get_node("../ServingPosition").global_position
+	
+	# Hide order elements
+	if order_sprite:
+		order_sprite.visible = false
+	var timer_label = get_node_or_null("Label")
+	if timer_label:
+		timer_label.visible = false
+		timer_label.text = "15"  # Reset timer display
+	
+	print("Customer reset complete - walking to serving position")
