@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Order-Up"
-run/main_scene="uid://dc1bbb8xe13ge"
+config/name="cook2go"
+run/main_scene="uid://cyh0f2r2603yx"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
