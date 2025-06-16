@@ -16,6 +16,7 @@ var can_spawn_customer = true
 var near_desk = -1  # Which desk player is near (-1 = none)
 var near_fridge = false
 var near_drawer = false
+var near_door = false  # Add door detection
 
 func _ready():
 	player = $Player
@@ -55,6 +56,7 @@ func _ready():
 	
 	# Connect to manually created Area2D nodes in the editor
 	connect_furniture_areas()
+	connect_door_area()
 
 func connect_furniture_areas():
 	# Connect to existing Area2D nodes you create in the editor
@@ -71,6 +73,23 @@ func connect_furniture_areas():
 		drawer_area.body_entered.connect(_on_drawer_entered)
 		drawer_area.body_exited.connect(_on_drawer_exited)
 		print("Connected to manually created drawer Area2D")
+
+func connect_door_area():
+	# Connect to door Area2D (you'll create this in the editor)
+	var door_area = get_node_or_null("DoorArea")  # Or wherever you put the door Area2D
+	if door_area:
+		door_area.body_entered.connect(_on_door_entered)
+		door_area.body_exited.connect(_on_door_exited)
+		print("Connected to door Area2D")
+
+func _on_door_entered(body):
+	if body == player:
+		near_door = true
+		print("Near door - Press SPACE to go outside")
+
+func _on_door_exited(body):
+	if body == player:
+		near_door = false
 
 # Simple furniture detection (SAME pattern as desks)
 func _on_fridge_entered(body):
@@ -111,6 +130,12 @@ func _input(event):
 		handle_interaction()
 
 func handle_interaction():
+	# DOOR INTERACTION - Highest priority
+	if near_door:
+		print("Going outside...")
+		fade_to_scene("res://outside_road.tscn")
+		return
+	
 	# CUSTOMER INTERACTION - Check this FIRST (highest priority)
 	var customer = get_node_or_null("Customer")
 	if customer and player_holding != null:
@@ -244,3 +269,21 @@ func spawn_new_customer():
 
 func create_new_customer():
 	can_spawn_customer = true
+
+func fade_to_scene(scene_path):
+	# Create a black overlay for fading
+	var fade_overlay = ColorRect.new()
+	fade_overlay.color = Color.BLACK
+	fade_overlay.color.a = 0.0  # Start transparent
+	fade_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	get_tree().root.add_child(fade_overlay)
+	
+	# Create fade out tween
+	var tween = create_tween()
+	tween.tween_property(fade_overlay, "color:a", 1.0, 0.5)  # Fade to black over 0.5 seconds
+	
+	# When fade out is complete, change scene and fade in
+	await tween.finished
+	get_tree().change_scene_to_file(scene_path)
+	
+	# Note: The fade in will happen in the new scene
