@@ -1,2 +1,2 @@
-SpriteFrames
 AtlasTexture
+SpriteFrames

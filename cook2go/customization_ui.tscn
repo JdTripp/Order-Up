@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c41isr8xlbop6"]
+[gd_scene load_steps=9 format=3 uid="uid://c41isr8xlbop6"]
 
 [ext_resource type="Script" uid="uid://bseosrshbbw8l" path="res://customization_ui.gd" id="1_guqlq"]
 [ext_resource type="Texture2D" uid="uid://dlf2gqdw6fd4x" path="res://assets UI/ui_testback.png" id="2_m3lcr"]
 [ext_resource type="Texture2D" uid="uid://b8ca11g7e5ngn" path="res://assets UI/Modern_UI_Style_1.png" id="3_wl8gf"]
 [ext_resource type="Texture2D" uid="uid://024asdphik03" path="res://assets UI/button_01.tres" id="4_mytjh"]
+[ext_resource type="Texture2D" uid="uid://dyj4tneol7dih" path="res://assets UI/left_arrow.tres" id="5_ke7rv"]
+[ext_resource type="Texture2D" uid="uid://1j040co2eagm" path="res://assets UI/right_arrow.tres" id="6_uq56g"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3lcr"]
 texture = ExtResource("2_m3lcr")
@@ -65,14 +67,6 @@ z_index = 3
 [node name="EyesSprite" type="AnimatedSprite2D" parent="PreviewPanel/PreviewCharacter"]
 z_index = 4
 
-[node name="PlayerNameLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 58.0
-offset_right = 142.0
-offset_bottom = 81.0
-text = "NAME PLAYER"
-
 [node name="CategoryPanel" type="GridContainer" parent="."]
 z_index = 1
 layout_mode = 1
@@ -119,11 +113,6 @@ offset_top = 71.165
 offset_right = 658.065
 offset_bottom = 421.165
 
-[node name="Category Title" type="Label" parent="OptionsPanel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel"]
 layout_mode = 1
 anchors_preset = 15
@@ -151,3 +140,21 @@ offset_top = 357.835
 offset_right = 235.935
 offset_bottom = 388.835
 text = "Cancel"
+
+[node name="LeftArrow" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 208.0
+offset_right = 912.0
+offset_bottom = 896.0
+scale = Vector2(3.405, 3.405)
+texture_normal = ExtResource("5_ke7rv")
+
+[node name="RightArrow" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 208.0
+offset_right = 234.0
+offset_bottom = 248.0
+scale = Vector2(3.405, 3.405)
+texture_normal = ExtResource("6_uq56g")

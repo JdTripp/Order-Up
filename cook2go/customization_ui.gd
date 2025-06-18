@@ -1,4 +1,4 @@
-# CustomizationUI.gd - FIXED COMPLETE VERSION
+# CustomizationUI.gd - COMPLETE VERSION with Arrow Rotation
 extends Control
 
 # References to UI elements
@@ -13,6 +13,10 @@ extends Control
 @onready var outfit_category_btn = $CategoryPanel/OutfitCategoryButton
 @onready var eyes_category_btn = $CategoryPanel/EyesCategoryButton
 
+# Arrow buttons for character rotation
+@onready var left_arrow = $LeftArrow
+@onready var right_arrow = $RightArrow
+
 # Options panel (RIGHT side - shows available options when category is selected)
 @onready var options_panel = $OptionsPanel
 @onready var options_grid = $OptionsPanel/ScrollContainer/OptionsGrid
@@ -26,6 +30,10 @@ extends Control
 var player: CharacterBody2D
 var temp_character_data: Dictionary
 var current_category = ""
+
+# Current character direction
+var current_direction = "down"  # Start with idle_down
+var directions = ["down", "right", "up", "left"]  # Rotation order
 
 # Display names for UI
 var body_options = ["Nude Base"]
@@ -46,10 +54,15 @@ func _ready():
 	if eyes_category_btn:
 		eyes_category_btn.pressed.connect(func(): show_category_options("eyes"))
 	
-	# Connect control buttons - UPDATED PATHS
-	var confirm_btn = $OptionsPanel/ConfirmButton  # Updated path
-	var cancel_btn = $OptionsPanel/CancelButton    # Updated path
+	# Connect arrow buttons
+	if left_arrow:
+		left_arrow.pressed.connect(_on_left_arrow)
+		print("Connected left arrow")
+	if right_arrow:
+		right_arrow.pressed.connect(_on_right_arrow)
+		print("Connected right arrow")
 	
+	# Connect control buttons
 	if confirm_btn:
 		confirm_btn.pressed.connect(_on_confirm)
 		print("Connected confirm button")
@@ -91,6 +104,9 @@ func open_customization(player_ref: CharacterBody2D):
 	if temp_character_data.eyes >= eye_options.size():
 		temp_character_data.eyes = 0
 	
+	# Reset to down direction when opening
+	current_direction = "down"
+	
 	# Update preview and category buttons
 	update_preview()
 	update_category_buttons()
@@ -113,19 +129,19 @@ func update_preview():
 	# Load and apply sprite frames
 	if ResourceLoader.exists(body_path) and preview_body:
 		preview_body.sprite_frames = load(body_path)
-		preview_body.play("idle_down")
+		preview_body.play("idle_" + current_direction)
 		
 	if ResourceLoader.exists(outfit_path) and preview_outfit:
 		preview_outfit.sprite_frames = load(outfit_path)
-		preview_outfit.play("idle_down")
+		preview_outfit.play("idle_" + current_direction)
 		
 	if ResourceLoader.exists(hair_path) and preview_hair:
 		preview_hair.sprite_frames = load(hair_path)
-		preview_hair.play("idle_down")
+		preview_hair.play("idle_" + current_direction)
 		
 	if ResourceLoader.exists(eyes_path) and preview_eyes:
 		preview_eyes.sprite_frames = load(eyes_path)
-		preview_eyes.play("idle_down")
+		preview_eyes.play("idle_" + current_direction)
 
 # Update the 4 category buttons to show current selections
 func update_category_buttons():
@@ -155,9 +171,9 @@ func set_category_button_preview(button: TextureButton, category: String, index:
 	# Create a small character sprite to show on top of the button
 	var preview_sprite = AnimatedSprite2D.new()
 	preview_sprite.name = "CharacterPreview"
-	preview_sprite.scale = Vector2(1, 1)  # Make it smaller - was 2,2 before
-	preview_sprite.position = Vector2(33, 21)  # Center it properly - was 32,32 before
-	preview_sprite.z_index = 10  # Make sure it's on top
+	preview_sprite.scale = Vector2(1, 1)
+	preview_sprite.position = Vector2(33, 21)  # Centered on the button
+	preview_sprite.z_index = 10
 	
 	# Load the appropriate sprite frames for this category
 	var sprite_frames_path = ""
@@ -178,7 +194,7 @@ func set_category_button_preview(button: TextureButton, category: String, index:
 	# Load and apply the sprite frames
 	if ResourceLoader.exists(sprite_frames_path):
 		preview_sprite.sprite_frames = load(sprite_frames_path)
-		preview_sprite.play("idle_down")
+		preview_sprite.play("idle_down")  # Category buttons always show idle_down
 		button.add_child(preview_sprite)
 		print("Added ", category, " preview sprite to button")
 	else:
@@ -223,10 +239,16 @@ func show_category_options(category: String):
 
 # Create clickable option buttons for the selected category
 func create_option_buttons(option_names: Array, current_index: int, category: String):
+	print("=== CREATING OPTIONS FOR: ", category, " ===")
+	print("Option names: ", option_names)
+	print("Number of options: ", option_names.size())
+	
 	for i in range(option_names.size()):
+		print("Creating option ", i, ": ", option_names[i])
+		
 		# Create the main button with background from your UI sheet
 		var option_button = TextureButton.new()
-		option_button.custom_minimum_size = Vector2(120, 120)  # Made bigger: was 80,80
+		option_button.custom_minimum_size = Vector2(120, 120)  # Bigger buttons
 		
 		# Load background texture from your UI asset sheet
 		var background_atlas = AtlasTexture.new()
@@ -237,15 +259,19 @@ func create_option_buttons(option_names: Array, current_index: int, category: St
 		# Create character preview sprite
 		var preview_sprite = AnimatedSprite2D.new()
 		preview_sprite.name = "CharacterPreview"
-		preview_sprite.scale = Vector2(1.5, 1.5)  # Made bigger: was 1,1
-		preview_sprite.position = Vector2(60, 60)  # Adjusted for bigger button: was 40,40
+		preview_sprite.scale = Vector2(1.5, 1.5)  # Bigger sprite
+		preview_sprite.position = Vector2(60, 60)  # Center on the 120x120 button
 		preview_sprite.z_index = 10
 		
-		# Load the sprite frames for this specific option
+		# Get the sprite frames path and check if it exists
 		var sprite_frames_path = get_sprite_frames_path(category, i)
+		print("Looking for sprite frames at: ", sprite_frames_path)
+		print("File exists: ", ResourceLoader.exists(sprite_frames_path))
+		
+		# Load the sprite frames for this specific option
 		if ResourceLoader.exists(sprite_frames_path):
 			preview_sprite.sprite_frames = load(sprite_frames_path)
-			preview_sprite.play("idle_down")
+			preview_sprite.play("idle_down")  # Options always show idle_down
 			option_button.add_child(preview_sprite)
 		
 		# Highlight current selection
@@ -296,6 +322,39 @@ func select_option(category: String, index: int):
 	
 	# Refresh the options panel to show new selection highlight
 	show_category_options(current_category)
+
+# Rotate character left (counter-clockwise)
+func _on_left_arrow():
+	var current_index = directions.find(current_direction)
+	current_index = (current_index - 1) % directions.size()
+	if current_index < 0:
+		current_index = directions.size() - 1
+	current_direction = directions[current_index]
+	update_character_rotation()
+	print("Rotated left to: ", current_direction)
+
+# Rotate character right (clockwise) 
+func _on_right_arrow():
+	var current_index = directions.find(current_direction)
+	current_index = (current_index + 1) % directions.size()
+	current_direction = directions[current_index]
+	update_character_rotation()
+	print("Rotated right to: ", current_direction)
+
+# Update all character sprites to show the new direction
+func update_character_rotation():
+	var animation_name = "idle_" + current_direction
+	
+	if preview_body and preview_body.sprite_frames:
+		preview_body.play(animation_name)
+	if preview_outfit and preview_outfit.sprite_frames:
+		preview_outfit.play(animation_name)
+	if preview_hair and preview_hair.sprite_frames:
+		preview_hair.play(animation_name)
+	if preview_eyes and preview_eyes.sprite_frames:
+		preview_eyes.play(animation_name)
+	
+	print("Character rotated to: ", current_direction)
 
 func _on_confirm():
 	print("Confirming changes...")
