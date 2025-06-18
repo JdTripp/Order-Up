@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c41isr8xlbop6"]
+[gd_scene load_steps=7 format=3 uid="uid://c41isr8xlbop6"]
 
 [ext_resource type="Script" uid="uid://bseosrshbbw8l" path="res://customization_ui.gd" id="1_guqlq"]
 [ext_resource type="Texture2D" uid="uid://dlf2gqdw6fd4x" path="res://assets UI/ui_testback.png" id="2_m3lcr"]
 [ext_resource type="Texture2D" uid="uid://b8ca11g7e5ngn" path="res://assets UI/Modern_UI_Style_1.png" id="3_wl8gf"]
+[ext_resource type="Texture2D" uid="uid://024asdphik03" path="res://assets UI/button_01.tres" id="4_mytjh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3lcr"]
 texture = ExtResource("2_m3lcr")
@@ -42,10 +43,10 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_m3lcr")
 
 [node name="PreviewPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = -36.0
-offset_top = 105.0
-offset_right = 203.14
-offset_bottom = 360.69
+offset_left = -28.0
+offset_top = 100.0
+offset_right = 211.14
+offset_bottom = 355.69
 theme_override_styles/panel = SubResource("StyleBoxTexture_mytjh")
 
 [node name="PreviewCharacter" type="Node2D" parent="PreviewPanel"]
@@ -66,18 +67,87 @@ z_index = 4
 
 [node name="PlayerNameLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 61.0
-offset_right = 135.0
-offset_bottom = 84.0
+offset_left = 33.0
+offset_top = 58.0
+offset_right = 142.0
+offset_bottom = 81.0
 text = "NAME PLAYER"
 
-[node name="CategoryButtons" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = -63.0
-offset_top = 383.0
-offset_right = -23.0
-offset_bottom = 423.0
+[node name="CategoryPanel" type="GridContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -702.625
+offset_top = -297.07
+offset_right = -370.625
+offset_bottom = 34.93
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.6, 2.6)
+theme_override_constants/h_separation = -45
+columns = 4
 
-[node name="BodyButton" type="TextureButton" parent="CategoryButtons"]
+[node name="BodyCategoryButton" type="TextureButton" parent="CategoryPanel"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+texture_normal = ExtResource("4_mytjh")
+
+[node name="HairCategoryButton" type="TextureButton" parent="CategoryPanel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("4_mytjh")
+
+[node name="OutfitCategoryButton" type="TextureButton" parent="CategoryPanel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("4_mytjh")
+
+[node name="EyesCategoryButton" type="TextureButton" parent="CategoryPanel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("4_mytjh")
+
+[node name="OptionsPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 358.065
+offset_top = 71.165
+offset_right = 658.065
+offset_bottom = 421.165
+
+[node name="Category Title" type="Label" parent="OptionsPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsGrid" type="GridContainer" parent="OptionsPanel/ScrollContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="ConfirmButton" type="Button" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 39.935
+offset_top = 356.835
+offset_right = 110.935
+offset_bottom = 387.835
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 175.935
+offset_top = 357.835
+offset_right = 235.935
+offset_bottom = 388.835
+text = "Cancel"

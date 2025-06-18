@@ -1,1 +1,11 @@
-res://Map Artwork/Home.tscn
+res://customization_ui.tscn
+res://character assets CUSTOMIZE/free_character_nude_frames.tres
+res://character assets CUSTOMIZE/outfit/male_outfit_original_frames.tres
+res://character assets CUSTOMIZE/hair/male_hair_orange_frames.tres
+res://character assets CUSTOMIZE/eyes/male_eyes_yellow_frames.tres
+res://lobby_room.tscn
+res://player.tscn
+res://outside_road.tscn
+res://Ordering Up/Home Map.tscn
+res://customization_ui.gd
+res://player.gd

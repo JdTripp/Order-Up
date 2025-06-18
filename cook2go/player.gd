@@ -21,8 +21,8 @@ var character_data = {
 
 # Available options - EXACTLY matching your files
 var body_options = ["free_character_nude"]  
-var outfit_options = ["male_outfit_original"]  
-var hair_options = ["male_hair_orange", "female_hair_lightblue", "female_hair_purple"]  
+var outfit_options = ["male_outfit_original", "female_outfit_green"]  
+var hair_options = ["male_hair_orange", "female_hair_lightblue", "female_hair_purple", "male_hair_purple"]  
 var eye_options = ["male_eyes_blue", "male_eyes_green", "male_eyes_lightblue", "male_eyes_yellow"]
 
 func _ready():
