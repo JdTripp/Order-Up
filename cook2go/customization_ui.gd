@@ -36,10 +36,10 @@ var current_direction = "down"  # Start with idle_down
 var directions = ["down", "right", "up", "left"]  # Rotation order
 
 # Display names for UI
-var body_options = ["Nude Base"]
-var outfit_options = ["Original Outfit", "Green Outfit"]
-var hair_options = ["Orange Hair", "Long LightBlue Hair", "Long Purple Hair"]
-var eye_options = ["Blue Eyes", "Green Eyes", "Light Blue Eyes", "Yellow Eyes"]
+var body_options = ["White Base", "Brown Base"]
+var outfit_options = ["Original Outfit", "Green Outfit", "WhiteOrange Outfit", "Pink Outfit"]
+var hair_options = ["Orange Hair", "Long LightBlue Hair", "Long Purple Hair", "Short Purple Hair"]
+var eye_options = ["Blue Eyes", "Green Eyes", "Light Blue Eyes", "Yellow Eyes", "Red Eyes", "Brown Eyes", "Green Eyes"]
 
 func _ready():
 	print("CustomizationUI _ready() called")
@@ -121,7 +121,7 @@ func update_preview():
 		return
 		
 	# Update the preview character to match temp data
-	var body_path = "res://character assets CUSTOMIZE/" + player.body_options[temp_character_data.body] + "_frames.tres"
+	var body_path = "res://character assets CUSTOMIZE/body/" + player.body_options[temp_character_data.body] + "_frames.tres"
 	var outfit_path = "res://character assets CUSTOMIZE/outfit/" + player.outfit_options[temp_character_data.outfit] + "_frames.tres"
 	var hair_path = "res://character assets CUSTOMIZE/hair/" + player.hair_options[temp_character_data.hair] + "_frames.tres"
 	var eyes_path = "res://character assets CUSTOMIZE/eyes/" + player.eye_options[temp_character_data.eyes] + "_frames.tres"
@@ -180,7 +180,7 @@ func set_category_button_preview(button: TextureButton, category: String, index:
 	match category:
 		"body":
 			if index < player.body_options.size():
-				sprite_frames_path = "res://character assets CUSTOMIZE/" + player.body_options[index] + "_frames.tres"
+				sprite_frames_path = "res://character assets CUSTOMIZE/body/" + player.body_options[index] + "_frames.tres"
 		"hair":
 			if index < player.hair_options.size():
 				sprite_frames_path = "res://character assets CUSTOMIZE/hair/" + player.hair_options[index] + "_frames.tres"
@@ -289,7 +289,7 @@ func get_sprite_frames_path(category: String, index: int) -> String:
 	match category:
 		"body":
 			if index < player.body_options.size():
-				return "res://character assets CUSTOMIZE/" + player.body_options[index] + "_frames.tres"
+				return "res://character assets CUSTOMIZE/body/" + player.body_options[index] + "_frames.tres"
 		"hair":
 			if index < player.hair_options.size():
 				return "res://character assets CUSTOMIZE/hair/" + player.hair_options[index] + "_frames.tres"

@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1750283303
+::res://::1750439966
 02_dish_2.png::CompressedTexture2D/CompressedTexture2D::4999206145492932160::1749742786::1749743565::1::::<><><>0<>0<>12e1f0a566e2adfb917e7037d6df77c2<>res://.godot/imported/02_dish_2.png-b5de2e45a0a4f901bd5e4b2fa2154b0a.ctex::
 101_waffle.png::CompressedTexture2D/CompressedTexture2D::8773385786264312673::1749742740::1749743565::1::::<><><>0<>0<>209207e0df3e859ce149214766926b8f<>res://.godot/imported/101_waffle.png-32ae1a51da41e27d98e2d0010aec7f41.ctex::
 102_waffle_dish.png::CompressedTexture2D/CompressedTexture2D::8935943919423240612::1749742740::1749743565::1::::<><><>0<>0<>66347769800df41894d75daac1426958<>res://.godot/imported/102_waffle_dish.png-a822afa12c700d49967b6c32bc1884c0.ctex::
@@ -7,18 +7,18 @@ atlas_16x.png::CompressedTexture2D/CompressedTexture2D::1235166193379896357::174
 atlas_32x.png::CompressedTexture2D/CompressedTexture2D::543219018062245196::1749762176::1749762176::1::::<><><>0<>0<>f95bf0ac4356985ed29cf03b1624fdbd<>res://.godot/imported/atlas_32x.png-21dccb663a14a9dc9ff0e8de46d1f89f.ctex::
 character.png::CompressedTexture2D/CompressedTexture2D::899682854758348807::1749674794::1749674901::1::::<><><>0<>0<>646ac6a5d40f775c5c13d7e4eb8a13ad<>res://.godot/imported/character.png-7a996d3b758d22c506b76a7c15391284.ctex::
 customer.gd::GDScript/GDScript::2411771629103452964::1749905773::0::1::::<>CharacterBody2D<><>0<>0<><>::
-customization_ui.gd::GDScript::3658960483405823805::1750280266::0::1::::<>Control<><>0<>0<><>::
-customization_ui.tscn::PackedScene::6862510479662383917::1750283303::0::1::::<><><>0<>0<><>::uid://bseosrshbbw8l::::res://customization_ui.gd<>uid://dlf2gqdw6fd4x::::res://assets UI/ui_testback.png<>uid://b8ca11g7e5ngn::::res://assets UI/Modern_UI_Style_1.png<>uid://024asdphik03::::res://assets UI/button_01.tres
+customization_ui.gd::GDScript::3658960483405823805::1750439179::0::1::::<>Control<><>0<>0<><>::
+customization_ui.tscn::PackedScene::6862510479662383917::1750439966::0::1::::<><><>0<>0<><>::uid://bseosrshbbw8l::::res://customization_ui.gd<>uid://dlf2gqdw6fd4x::::res://assets UI/ui_testback.png<>uid://b8ca11g7e5ngn::::res://assets UI/Modern_UI_Style_1.png<>uid://024asdphik03::::res://assets UI/button_01.tres<>uid://dyj4tneol7dih::::res://assets UI/left_arrow.tres<>uid://1j040co2eagm::::res://assets UI/right_arrow.tres
 free_character_1-3.png::CompressedTexture2D/CompressedTexture2D::3494413739072159298::1749679232::1749679234::1::::<><><>0<>0<>6e672568e937c1fc6e49a671ee353fcc<>res://.godot/imported/free_character_1-3.png-4c457648469e592c70567b4113f7aa93.ctex::
 icon.svg::CompressedTexture2D/CompressedTexture2D::958490347022739083::1749674487::1749674498::1::::<><><>0<>0<>984f74ab7764c06daa02d0d2a6c20e7a<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 Interiors_free_32x32.png::CompressedTexture2D/CompressedTexture2D::5948050715511511917::1749742909::1749743565::1::::<><><>0<>0<>58c5fa20c51664f51e5537f7bf3b3b28<>res://.godot/imported/Interiors_free_32x32.png-ae6020aa6efd10dccf5dfb1062b5622d.ctex::
 kitchen_test.tscn::PackedScene/PackedScene::1798291855503028591::1749900089::0::1::::<><><>0<>0<><>::uid://rulah2dqv6c4::::res://atlas_16x.png
 lobby_room.gd::GDScript/GDScript::6608740607983140211::1750177732::0::1::::<>Node2D<><>0<>0<><>::
-lobby_room.tscn::PackedScene::6473352558427411471::1750283303::0::1::::<><><>0<>0<><>::uid://bcusklg12mcbs::::res://player.tscn<>uid://c1fk80b7vshyh::::res://lobby_room.gd<>uid://cq0jr5miyhygj::::res://Interiors_free_32x32.png<>uid://0vdusmt4o4gp::::res://kitchen_test.tscn<>uid://dw85m8x0neaib::::res://101_waffle.png<>uid://cdhwgvhleuppg::::res://02_dish_2.png<>uid://mgyvkyqrlo4s::::res://assets ONION ASSETS/Decoration.png<>uid://d0kvxqtao1eiu::::res://102_waffle_dish.png<>uid://t26fvrtbwuxo::::res://assets ONION ASSETS/Wall Color Variation.png<>uid://bamjr5qlj4s1q::::res://customer.gd<>uid://bp1yqphahxc7s::::res://free_character_1-3.png<>uid://rulah2dqv6c4::::res://atlas_16x.png<>uid://c41isr8xlbop6::::res://customization_ui.tscn
+lobby_room.tscn::PackedScene::6473352558427411471::1750439966::0::1::::<><><>0<>0<><>::uid://bcusklg12mcbs::::res://player.tscn<>uid://c1fk80b7vshyh::::res://lobby_room.gd<>uid://cq0jr5miyhygj::::res://Interiors_free_32x32.png<>uid://0vdusmt4o4gp::::res://kitchen_test.tscn<>uid://dw85m8x0neaib::::res://101_waffle.png<>uid://cdhwgvhleuppg::::res://02_dish_2.png<>uid://mgyvkyqrlo4s::::res://assets ONION ASSETS/Decoration.png<>uid://d0kvxqtao1eiu::::res://102_waffle_dish.png<>uid://t26fvrtbwuxo::::res://assets ONION ASSETS/Wall Color Variation.png<>uid://s08xjvcsglav::::res://assets ONION ASSETS/Furniture.png<>uid://ksvbvbeqamvg::::res://assets ONION ASSETS/Water System.png<>uid://bamjr5qlj4s1q::::res://customer.gd<>uid://bp1yqphahxc7s::::res://free_character_1-3.png<>uid://rulah2dqv6c4::::res://atlas_16x.png<>uid://c41isr8xlbop6::::res://customization_ui.tscn
 outside_road.gd::GDScript/GDScript::8359813027076192783::1749941982::0::1::::<>Node2D<><>0<>0<><>::
-outside_road.tscn::PackedScene::4302553526521453128::1750283303::0::1::::<><><>0<>0<><>::uid://drds5tpb48j24::::res://outside_road.gd<>uid://rulah2dqv6c4::::res://atlas_16x.png<>uid://bcusklg12mcbs::::res://player.tscn
-player.gd::GDScript::1809138570249461206::1750280245::0::1::::<>CharacterBody2D<><>0<>0<><>::
-player.tscn::PackedScene::2569197278102760844::1750283303::0::1::::<><><>0<>0<><>::uid://01miou1shro5::::res://player.gd<>uid://d13sxd6noswb4::::res://character assets CUSTOMIZE/free_character_nude_frames.tres<>uid://b4a34pifwvgug::::res://character assets CUSTOMIZE/outfit/male_outfit_original_frames.tres<>uid://ciu0o1qbw83vw::::res://character assets CUSTOMIZE/hair/male_hair_orange_frames.tres<>uid://b2bxwo26rf6hr::::res://character assets CUSTOMIZE/eyes/male_eyes_yellow_frames.tres
+outside_road.tscn::PackedScene::4302553526521453128::1750439966::0::1::::<><><>0<>0<><>::uid://drds5tpb48j24::::res://outside_road.gd<>uid://rulah2dqv6c4::::res://atlas_16x.png<>uid://bcusklg12mcbs::::res://player.tscn
+player.gd::GDScript::1809138570249461206::1750438953::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.tscn::PackedScene::2569197278102760844::1750439966::0::1::::<><><>0<>0<><>::uid://01miou1shro5::::res://player.gd<>uid://d13sxd6noswb4::::res://character assets CUSTOMIZE/body/body_white_frames.tres<>uid://b4a34pifwvgug::::res://character assets CUSTOMIZE/outfit/male_outfit_original_frames.tres<>uid://ciu0o1qbw83vw::::res://character assets CUSTOMIZE/hair/male_hair_orange_frames.tres<>uid://b2bxwo26rf6hr::::res://character assets CUSTOMIZE/eyes/male_eyes_yellow_frames.tres
 room pixel art.png::CompressedTexture2D/CompressedTexture2D::2610623509609393005::1749758086::1749758188::1::::<><><>0<>0<>405f6382b62f510eea539470bb2c61b3<>res://.godot/imported/room pixel art.png-adf10ed0bab4afd82b612cffd3ebfb1e.ctex::
 waffle.gd::GDScript/GDScript::7894163827303422841::1749746701::0::1::::<>Sprite2D<><>0<>0<><>::
 ::res://assets ONION ASSETS/::1750099144
@@ -49,41 +49,54 @@ Swinging Door.png::CompressedTexture2D/CompressedTexture2D::385788154259267736::
 Toilet Door Mens.png::CompressedTexture2D/CompressedTexture2D::1584749203469907530::1735721226::1750099144::1::::<><><>0<>0<>5cc6e29f2f547bf7172d6ce57aeaa1ba<>res://.godot/imported/Toilet Door Mens.png-a17f21c50868fbd333be4a901c0a300d.ctex::
 Toilet Door Womens.png::CompressedTexture2D/CompressedTexture2D::4040537700535414016::1735721190::1750099144::1::::<><><>0<>0<>838ead6dc89f1fbb6b13884f009093aa<>res://.godot/imported/Toilet Door Womens.png-af2e0694f54ea0b9c8e4d81b4fe8e5ab.ctex::
 Wooden Door.png::CompressedTexture2D/CompressedTexture2D::4857507809282503305::1735735310::1750099144::1::::<><><>0<>0<>f5788c21befff330d022b5e2ecc5e371<>res://.godot/imported/Wooden Door.png-c7c5ed7f4295504e30e0da234b12f8b3.ctex::
-::res://assets UI/::1750251110
+::res://assets UI/::1750285038
 button_01.tres::AtlasTexture/AtlasTexture::1812221033846579430::1750251110::0::1::::<><><>0<>0<><>::uid://b8ca11g7e5ngn::::res://assets UI/Modern_UI_Style_1.png
+left_arrow.tres::AtlasTexture/AtlasTexture::8864169110687865491::1750285038::0::1::::<><><>0<>0<><>::uid://b8ca11g7e5ngn::::res://assets UI/Modern_UI_Style_1.png
 Modern_UI_Style_1.png::CompressedTexture2D/CompressedTexture2D::4706829086234220093::1750203403::1750203432::1::::<><><>0<>0<>bf4541f7b317828040bcb08cf6f49937<>res://.godot/imported/Modern_UI_Style_1.png-b3c7c7618d77e217e08974b8c776ac0a.ctex::
 Modern_UI_Style_2.png::CompressedTexture2D/CompressedTexture2D::2364644876283240778::1750203416::1750203432::1::::<><><>0<>0<>905ac8aed25d7038196b661ce6ed9832<>res://.godot/imported/Modern_UI_Style_2.png-4d0903bb8e68f3adf320558670d6801a.ctex::
-new_atlas_texture.tres::AtlasTexture::8864169110687865491::1750284504::0::1::::<><><>0<>0<><>::
+right_arrow.tres::AtlasTexture/AtlasTexture::1845060364063480424::1750285038::0::1::::<><><>0<>0<><>::uid://b8ca11g7e5ngn::::res://assets UI/Modern_UI_Style_1.png
 ui_testback.png::CompressedTexture2D/CompressedTexture2D::7943312139485304469::1750243233::1750243260::1::::<><><>0<>0<>892c3e7030135354d5ad63d50b106d4e<>res://.godot/imported/ui_testback.png-850aff7b6193bd2a370c7fe589c8454c.ctex::
-::res://character assets CUSTOMIZE/::1750283008
-free_character_nude.png::CompressedTexture2D/CompressedTexture2D::7678226709261230564::1750156136::1750170921::1::::<><><>0<>0<>fa774374bf72a3eabad5cb29d1c0d0e1<>res://.godot/imported/free_character_nude.png-00379a7fbb5d675bb046eb7b8bd43e1d.ctex::
-free_character_nude_frames.tres::SpriteFrames::9043108747980517351::1750283008::0::1::::<><><>0<>0<><>::uid://dhnnjistd640w::::res://character assets CUSTOMIZE/free_character_nude.png
-::res://character assets CUSTOMIZE/eyes/::1750283008
+::res://character assets CUSTOMIZE/::1750438420
+::res://character assets CUSTOMIZE/body/::1750438717
+body_brown.png::CompressedTexture2D/CompressedTexture2D::5389156762987938771::1750436752::1750436824::1::::<><><>0<>0<>bdd08aee9e4ec25c8859a7750ab36fe2<>res://.godot/imported/body_brown.png-8078bc3bc3d3aeec97e1d0730f5391d2.ctex::
+body_brown_frames.tres::SpriteFrames::4401293739103299415::1750438717::0::1::::<><><>0<>0<><>::uid://ci1svh7ftjjih::::res://character assets CUSTOMIZE/body/body_brown.png
+body_white.png::CompressedTexture2D/CompressedTexture2D::2378842018293399339::1750156136::1750436824::1::::<><><>0<>0<>1dcb0d2552c70da5b68bccf17569bcee<>res://.godot/imported/body_white.png-6bb9535a6fd16ab6bfbec6761d3c992b.ctex::
+body_white_frames.tres::SpriteFrames::9043108747980517351::1750435080::0::1::::<><><>0<>0<><>::uid://dhnnjistd640w::::res://character assets CUSTOMIZE/free_character_nude.png
+::res://character assets CUSTOMIZE/eyes/::1750435080
 male_eyes_blue.png::CompressedTexture2D/CompressedTexture2D::5627904790956312545::1750167370::1750170921::1::::<><><>0<>0<>4f3fdaab132549b0c7306b6739cfe822<>res://.godot/imported/male_eyes_blue.png-29613275bd924b532abedd0fcf1505c7.ctex::
 male_eyes_blue_frames.tres::SpriteFrames/SpriteFrames::5064730576522329468::1750187809::0::1::::<><><>0<>0<><>::uid://cmgg1fyygsec4::::res://character assets CUSTOMIZE/eyes/male_eyes_blue.png
-male_eyes_green.png::CompressedTexture2D/CompressedTexture2D::6082528813711274350::1750168263::1750170921::1::::<><><>0<>0<>956e769d3819bd0f923f7e5dcb33eedb<>res://.godot/imported/male_eyes_green.png-55c991b9858e3f08eeea170c0f9d2acd.ctex::
+male_eyes_brown.png::CompressedTexture2D/CompressedTexture2D::284239010561055870::1750192134::1750431691::1::::<><><>0<>0<>339cdd1ef6a048970230ce8e225ce362<>res://.godot/imported/male_eyes_brown.png-7add0b1b15a126a8b80d5f913ef1a4a6.ctex::
+male_eyes_brown_frames.tres::SpriteFrames/SpriteFrames::3614158024894388579::1750432385::0::1::::<><><>0<>0<><>::uid://ebxm0qccfm3o::::res://character assets CUSTOMIZE/eyes/male_eyes_brown.png
+male_eyes_green.png::CompressedTexture2D/CompressedTexture2D::6082528813711274350::1750191987::1750432476::1::::<><><>0<>0<>956e769d3819bd0f923f7e5dcb33eedb<>res://.godot/imported/male_eyes_green.png-55c991b9858e3f08eeea170c0f9d2acd.ctex::
+male_eyes_green_frames.tres::SpriteFrames/SpriteFrames::562194814924604303::1750432920::0::1::::<><><>0<>0<><>::uid://cswomjgsvr8gg::::res://character assets CUSTOMIZE/eyes/male_eyes_green.png
 male_eyes_lightblue.png::CompressedTexture2D/CompressedTexture2D::1508400295880972850::1750167457::1750170921::1::::<><><>0<>0<>1f4730308c0868fefae1d4c73627caf1<>res://.godot/imported/male_eyes_lightblue.png-3c6fde2fd69204a6c916b4152a349e33.ctex::
 male_eyes_lightblue_frames.tres::SpriteFrames/SpriteFrames::2155547270235678834::1750195274::0::1::::<><><>0<>0<><>::uid://vqxerfrlakdu::::res://character assets CUSTOMIZE/eyes/male_eyes_lightblue.png
+male_eyes_red.png::CompressedTexture2D/CompressedTexture2D::512826408076329029::1750192227::1750431691::1::::<><><>0<>0<>37ab2db35f257ba9f54e412be125986c<>res://.godot/imported/male_eyes_red.png-9f297ffcf44cd4c0af560d56fa2a5516.ctex::
+male_eyes_red_frames.tres::SpriteFrames/SpriteFrames::3047079483601557898::1750431948::0::1::::<><><>0<>0<><>::uid://hkof8qeyaja8::::res://character assets CUSTOMIZE/eyes/male_eyes_red.png
 male_eyes_yellow.png::CompressedTexture2D/CompressedTexture2D::1461743575353123989::1750167421::1750170921::1::::<><><>0<>0<>8904dc649801641a71ef0f3a9ded7c47<>res://.godot/imported/male_eyes_yellow.png-a9ccfcf47a379dec47d0e3a7213b7ba3.ctex::
-male_eyes_yellow_frames.tres::SpriteFrames::4285020396441641299::1750283008::0::1::::<><><>0<>0<><>::uid://u3cx52sebjx2::::res://character assets CUSTOMIZE/eyes/male_eyes_yellow.png
-::res://character assets CUSTOMIZE/hair/::1750283008
+male_eyes_yellow_frames.tres::SpriteFrames/SpriteFrames::4285020396441641299::1750435080::0::1::::<><><>0<>0<><>::uid://u3cx52sebjx2::::res://character assets CUSTOMIZE/eyes/male_eyes_yellow.png
+::res://character assets CUSTOMIZE/hair/::1750435080
 female_hair_lightblue.png::CompressedTexture2D/CompressedTexture2D::7292416383016090969::1750189951::1750190481::1::::<><><>0<>0<>d13f69bd8ccd339ce23e0726e1deec7b<>res://.godot/imported/female_hair_lightblue.png-a93d9646974b300399a1c07051ad5257.ctex::
 female_hair_lightblue_frames.tres::SpriteFrames/SpriteFrames::1714539523466459803::1750190682::0::1::::<><><>0<>0<><>::uid://db5rbdpf2quo4::::res://character assets CUSTOMIZE/hair/female_hair_lightblue.png
 female_hair_purple.png::CompressedTexture2D/CompressedTexture2D::4736192550256544127::1750195045::1750195155::1::::<><><>0<>0<>b5eaeeb753a8a9042d6f8b1e4b2636d2<>res://.godot/imported/female_hair_purple.png-ce5ea6e69b43133091dc3ff079d5cb62.ctex::
 female_hair_purple_frames.tres::SpriteFrames/SpriteFrames::8566229766237333506::1750195274::0::1::::<><><>0<>0<><>::uid://b8qintvrrv2sx::::res://character assets CUSTOMIZE/hair/female_hair_purple.png
 male_hair_orange.png::CompressedTexture2D/CompressedTexture2D::3018212110439637958::1750155830::1750170921::1::::<><><>0<>0<>c3f09546446a1c920454b70edbb8143e<>res://.godot/imported/male_hair_orange.png-02e98dc08bf35d934c647dad6be3aeff.ctex::
-male_hair_orange_frames.tres::SpriteFrames::5377183987905626200::1750283008::0::1::::<><><>0<>0<><>::uid://bjabropamclec::::res://character assets CUSTOMIZE/hair/male_hair_orange.png
+male_hair_orange_frames.tres::SpriteFrames/SpriteFrames::5377183987905626200::1750435080::0::1::::<><><>0<>0<><>::uid://bjabropamclec::::res://character assets CUSTOMIZE/hair/male_hair_orange.png
 male_hair_purple.png::CompressedTexture2D/CompressedTexture2D::5630864420652642580::1750269444::1750269687::1::::<><><>0<>0<>deb71a9494d36187a3e6b32cc071b657<>res://.godot/imported/male_hair_purple.png-0477f279ac65889c9a420164f733f6a7.ctex::
-male_hair_purple_frames.tres::SpriteFrames/SpriteFrames::4344333055267675581::1750269972::0::1::::<><><>0<>0<><>::uid://cmhvrqtf1i2v5::::res://character assets CUSTOMIZE/hair/male_hair_purple.png
-::res://character assets CUSTOMIZE/outfit/::1750283008
-female_outfit_green.png::CompressedTexture2D/CompressedTexture2D::2842146746354571064::1750275523::1750275635::1::::<><><>0<>0<>e7842812b49183a3838b8cd2c346a239<>res://.godot/imported/female_outfit_green.png-6ac1d657bb2937f070c6e5527815dfd2.ctex::
-female_outfit_green_frames.tres::SpriteFrames/SpriteFrames::2708944584791458443::1750275808::0::1::::<><><>0<>0<><>::uid://bgq00hmt22n2g::::res://character assets CUSTOMIZE/outfit/female_outfit_green.png
+male_hair_purple_frames.tres::SpriteFrames/SpriteFrames::4344333055267675581::1750431142::0::1::::<><><>0<>0<><>::uid://cmhvrqtf1i2v5::::res://character assets CUSTOMIZE/hair/male_hair_purple.png
+::res://character assets CUSTOMIZE/outfit/::1750439271
+female_outfit_green.png::CompressedTexture2D/CompressedTexture2D::2842146746354571064::1750440030::1750440080::1::::<><><>0<>0<>e7842812b49183a3838b8cd2c346a239<>res://.godot/imported/female_outfit_green.png-6ac1d657bb2937f070c6e5527815dfd2.ctex::
+female_outfit_green_frames.tres::SpriteFrames/SpriteFrames::2708944584791458443::1750435080::0::1::::<><><>0<>0<><>::uid://bgq00hmt22n2g::::res://character assets CUSTOMIZE/outfit/female_outfit_green.png
+female_outfit_pink.png::CompressedTexture2D/CompressedTexture2D::3500354250722212553::1750434889::1750434934::1::::<><><>0<>0<>18a9f958b52cb595012345f716144f2a<>res://.godot/imported/female_outfit_pink.png-3f9422f9c3bde51899d29ef0854fcebb.ctex::
+female_outfit_pink_frames.tres::SpriteFrames::2441799595659312319::1750439271::0::1::::<><><>0<>0<><>::uid://bp4uk8rf21dr2::::res://character assets CUSTOMIZE/outfit/female_outfit_pink.png
+female_outfit_whiteorange.png::CompressedTexture2D/CompressedTexture2D::3841295394042444969::1750430376::1750430519::1::::<><><>0<>0<>d4a773c14a471bcaba636150b2a41df7<>res://.godot/imported/female_outfit_whiteorange.png-387018a3be1338085df983224ebde784.ctex::
+female_outfit_whiteorange_frames.tres::SpriteFrames/SpriteFrames::4371543076064204::1750430913::0::1::::<><><>0<>0<><>::uid://buy0trploj6kr::::res://character assets CUSTOMIZE/outfit/female_outfit_whiteorange.png
 male_outfit_original.png::CompressedTexture2D/CompressedTexture2D::7771755342199004885::1750166278::1750170921::1::::<><><>0<>0<>9eeed3eca46733a2a4e019d6b0bd2cd4<>res://.godot/imported/male_outfit_original.png-ba6ae2b3c53c02453f3564ba1fa0773c.ctex::
-male_outfit_original_frames.tres::SpriteFrames::4423649813482840174::1750283008::0::1::::<><><>0<>0<><>::uid://diyxw7k6lavwf::::res://character assets CUSTOMIZE/outfit/male_outfit_original.png
-::res://Map Artwork/::1750195842
-Home Map.tscn::PackedScene/PackedScene::-1::1750195812::0::1::::<><><>0<>0<><>::
-::res://Ordering Up/::1750283304
-Home Map.tscn::PackedScene::6809837315321930576::1750283304::0::1::::<><><>0<>0<><>::uid://dff3gmlogpplw::::res://Ordering Up/Assets/Interior floor tiles.png<>uid://dw68ufecsgree::::res://Ordering Up/Assets/Wall Color Variation.png<>uid://b1n4qtm2vyvdr::::res://Ordering Up/Assets/Decoration.png<>uid://cykum3kshytw7::::res://Ordering Up/Assets/Doors& Stairs.png<>uid://syquavspiru::::res://Ordering Up/Assets/Furniture.png<>uid://b0ie73brjmm1r::::res://Ordering Up/Assets/Egghunt Assets.png<>uid://dqx0kp7wwclb5::::res://Ordering Up/Assets/atlas_16x.png<>uid://bcusklg12mcbs::::res://player.tscn
+male_outfit_original_frames.tres::SpriteFrames/SpriteFrames::4423649813482840174::1750435080::0::1::::<><><>0<>0<><>::uid://diyxw7k6lavwf::::res://character assets CUSTOMIZE/outfit/male_outfit_original.png
+::res://Map Artwork/::1750439975
+Home Map.tscn::PackedScene::6768531248277975647::1750439975::0::1::::<><><>0<>0<><>::uid://dff3gmlogpplw::::res://Ordering Up/Assets/Interior floor tiles.png<>uid://dw68ufecsgree::::res://Ordering Up/Assets/Wall Color Variation.png<>uid://b1n4qtm2vyvdr::::res://Ordering Up/Assets/Decoration.png<>uid://cykum3kshytw7::::res://Ordering Up/Assets/Doors& Stairs.png<>uid://syquavspiru::::res://Ordering Up/Assets/Furniture.png<>uid://b0ie73brjmm1r::::res://Ordering Up/Assets/Egghunt Assets.png<>uid://dqx0kp7wwclb5::::res://Ordering Up/Assets/atlas_16x.png<>uid://bcusklg12mcbs::::res://player.tscn
+::res://Ordering Up/::1750361750
+Home Map.tscn::PackedScene/PackedScene::6809837315321930576::1750361750::0::1::::<><><>0<>0<><>::uid://dff3gmlogpplw::::res://Ordering Up/Assets/Interior floor tiles.png<>uid://dw68ufecsgree::::res://Ordering Up/Assets/Wall Color Variation.png<>uid://b1n4qtm2vyvdr::::res://Ordering Up/Assets/Decoration.png<>uid://cykum3kshytw7::::res://Ordering Up/Assets/Doors& Stairs.png<>uid://syquavspiru::::res://Ordering Up/Assets/Furniture.png<>uid://b0ie73brjmm1r::::res://Ordering Up/Assets/Egghunt Assets.png<>uid://dqx0kp7wwclb5::::res://Ordering Up/Assets/atlas_16x.png<>uid://bcusklg12mcbs::::res://player.tscn
 ::res://Ordering Up/Assets/::1750196010
 atlas_16x.png::CompressedTexture2D/CompressedTexture2D::8331300858702470300::1750196008::1750196010::1::::<><><>0<>0<>dd0b7d2e0a7a5db552868dc08ec32ab1<>res://.godot/imported/atlas_16x.png-c5946b28adf3aaaa94f86fbf13c6fa26.ctex::
 Decoration.png::CompressedTexture2D/CompressedTexture2D::4239957912314518843::1750196008::1750196010::1::::<><><>0<>0<>89b39b2a989f2a8201f1d82f66706651<>res://.godot/imported/Decoration.png-b46946ad615667eea0e5fa40a746ee15.ctex::

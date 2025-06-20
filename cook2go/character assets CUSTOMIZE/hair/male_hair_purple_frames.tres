@@ -128,9 +128,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r7xx1")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_6o44m")
 }, {
 "duration": 1.0,

@@ -1,2 +1,2 @@
-AtlasTexture
 SpriteFrames
+AtlasTexture

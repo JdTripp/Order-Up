@@ -20,10 +20,10 @@ var character_data = {
 }
 
 # Available options - EXACTLY matching your files
-var body_options = ["free_character_nude"]  
-var outfit_options = ["male_outfit_original", "female_outfit_green"]  
+var body_options = ["body_white", "body_brown"]  
+var outfit_options = ["male_outfit_original", "female_outfit_green", "female_outfit_whiteorange", "female_outfit_pink"]  
 var hair_options = ["male_hair_orange", "female_hair_lightblue", "female_hair_purple", "male_hair_purple"]  
-var eye_options = ["male_eyes_blue", "male_eyes_green", "male_eyes_lightblue", "male_eyes_yellow"]
+var eye_options = ["male_eyes_blue", "male_eyes_green", "male_eyes_lightblue", "male_eyes_yellow", "male_eyes_red", "male_eyes_brown", "male_eyes_green"]
 
 func _ready():
 	print("PLAYER ARRAYS:")
@@ -96,7 +96,7 @@ func update_character_appearance():
 		character_data.eyes = 0
 	
 	# Load the appropriate sprite frames for each layer
-	var body_path = "res://character assets CUSTOMIZE/" + body_options[character_data.body] + "_frames.tres"
+	var body_path = "res://character assets CUSTOMIZE/body/" + body_options[character_data.body] + "_frames.tres"
 	var outfit_path = "res://character assets CUSTOMIZE/outfit/" + outfit_options[character_data.outfit] + "_frames.tres"
 	var hair_path = "res://character assets CUSTOMIZE/hair/" + hair_options[character_data.hair] + "_frames.tres"
 	var eyes_path = "res://character assets CUSTOMIZE/eyes/" + eye_options[character_data.eyes] + "_frames.tres"
