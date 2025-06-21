@@ -1,4 +1,4 @@
-# CustomizationUI.gd - COMPLETE VERSION with Arrow Rotation
+# CustomizationUI.gd - FIXED VERSION - Category buttons show only their specific body part
 extends Control
 
 # References to UI elements
@@ -143,9 +143,28 @@ func update_preview():
 		preview_eyes.sprite_frames = load(eyes_path)
 		preview_eyes.play("idle_" + current_direction)
 
-# Update the 4 category buttons to show current selections
+# Update only a single category button (used when that specific category changes)
+func update_single_category_button(category: String, index: int):
+	print("Updating single category button: ", category, " with index: ", index)
+	
+	match category:
+		"body":
+			if body_category_btn:
+				set_category_button_preview(body_category_btn, "body", index)
+		"hair":
+			if hair_category_btn:
+				set_category_button_preview(hair_category_btn, "hair", index)
+		"outfit":
+			if outfit_category_btn:
+				set_category_button_preview(outfit_category_btn, "outfit", index)
+		"eyes":
+			if eyes_category_btn:
+				set_category_button_preview(eyes_category_btn, "eyes", index)
+
+# Update the 4 category buttons to show current selections (only used when opening UI or major changes)
 func update_category_buttons():
 	print("Updating category buttons to show current selections...")
+	print("Current data - Body:", temp_character_data.body, "Hair:", temp_character_data.hair, "Outfit:", temp_character_data.outfit, "Eyes:", temp_character_data.eyes)
 	
 	if body_category_btn:
 		set_category_button_preview(body_category_btn, "body", temp_character_data.body)
@@ -156,9 +175,15 @@ func update_category_buttons():
 	if eyes_category_btn:
 		set_category_button_preview(eyes_category_btn, "eyes", temp_character_data.eyes)
 
-# Set a category button to show a small preview of the current selection
+# FIXED: Set a category button to show ONLY the specific body part for that category
 func set_category_button_preview(button: TextureButton, category: String, index: int):
-	print("Setting button preview for ", category, " index ", index)
+	print("=== SET_CATEGORY_BUTTON_PREVIEW ===")
+	print("Category: ", category, ", Index: ", index)
+	print("Button name: ", button.name if button else "null")
+	
+	if not button:
+		print("ERROR: Button is null!")
+		return
 	
 	# Reset button to original color/texture
 	button.modulate = Color.WHITE
@@ -166,41 +191,57 @@ func set_category_button_preview(button: TextureButton, category: String, index:
 	# Remove any existing character sprite child
 	for child in button.get_children():
 		if child.name == "CharacterPreview":
+			print("Removing existing preview from ", category, " button")
 			child.queue_free()
 	
-	# Create a small character sprite to show on top of the button
-	var preview_sprite = AnimatedSprite2D.new()
-	preview_sprite.name = "CharacterPreview"
-	preview_sprite.scale = Vector2(1, 1)
-	preview_sprite.position = Vector2(33, 21)  # Centered on the button
-	preview_sprite.z_index = 10
-	
-	# Load the appropriate sprite frames for this category
+	# FIXED: Only create preview sprite for the specific category this button represents
 	var sprite_frames_path = ""
+	
+	# Make sure we have a valid player reference
+	if not player:
+		print("ERROR: No player reference!")
+		return
+	
+	# Get the correct path based on category and index
 	match category:
 		"body":
 			if index < player.body_options.size():
 				sprite_frames_path = "res://character assets CUSTOMIZE/body/" + player.body_options[index] + "_frames.tres"
+				print("Body path: ", sprite_frames_path)
 		"hair":
 			if index < player.hair_options.size():
 				sprite_frames_path = "res://character assets CUSTOMIZE/hair/" + player.hair_options[index] + "_frames.tres"
+				print("Hair path: ", sprite_frames_path)
 		"outfit":
 			if index < player.outfit_options.size():
 				sprite_frames_path = "res://character assets CUSTOMIZE/outfit/" + player.outfit_options[index] + "_frames.tres"
+				print("Outfit path: ", sprite_frames_path)
 		"eyes":
 			if index < player.eye_options.size():
 				sprite_frames_path = "res://character assets CUSTOMIZE/eyes/" + player.eye_options[index] + "_frames.tres"
+				print("Eyes path: ", sprite_frames_path)
 	
-	# Load and apply the sprite frames
-	if ResourceLoader.exists(sprite_frames_path):
+	print("Final sprite path: ", sprite_frames_path)
+	print("Path exists: ", ResourceLoader.exists(sprite_frames_path))
+	
+	# Only create the preview if we have a valid path
+	if sprite_frames_path != "" and ResourceLoader.exists(sprite_frames_path):
+		var preview_sprite = AnimatedSprite2D.new()
+		preview_sprite.name = "CharacterPreview"
+		preview_sprite.scale = Vector2(1, 1)
+		preview_sprite.position = Vector2(33, 21)  # Centered on the button
+		preview_sprite.z_index = 10
+		
 		preview_sprite.sprite_frames = load(sprite_frames_path)
 		preview_sprite.play("idle_down")  # Category buttons always show idle_down
 		button.add_child(preview_sprite)
-		print("Added ", category, " preview sprite to button")
+		print("SUCCESS: Added ", category, " preview sprite to button for index ", index)
+		print("Button now has ", button.get_child_count(), " children")
 	else:
-		print("Could not find sprite frames: ", sprite_frames_path)
+		print("FAILED: Could not find or load sprite frames: ", sprite_frames_path)
 	
-	print("=== End button preview setup ===")
+	print("=== END SET_CATEGORY_BUTTON_PREVIEW ===")
+	print()
 
 # Show options panel on the RIGHT with all available options for the selected category
 func show_category_options(category: String):
@@ -243,8 +284,30 @@ func create_option_buttons(option_names: Array, current_index: int, category: St
 	print("Option names: ", option_names)
 	print("Number of options: ", option_names.size())
 	
-	for i in range(option_names.size()):
-		print("Creating option ", i, ": ", option_names[i])
+	# Get actual count from player arrays to make sure we create all available options
+	var actual_count = 0
+	match category:
+		"body":
+			actual_count = player.body_options.size() if player else option_names.size()
+		"hair":
+			actual_count = player.hair_options.size() if player else option_names.size()
+		"outfit":
+			actual_count = player.outfit_options.size() if player else option_names.size()
+		"eyes":
+			actual_count = player.eye_options.size() if player else option_names.size()
+	
+	# Use the larger of the two counts to make sure we don't miss any options
+	var max_count = max(option_names.size(), actual_count)
+	print("Creating ", max_count, " option buttons")
+	
+	for i in range(max_count):
+		var display_name = ""
+		if i < option_names.size():
+			display_name = option_names[i]
+		else:
+			display_name = category.capitalize() + " " + str(i + 1)  # Fallback name
+			
+		print("Creating option ", i, ": ", display_name)
 		
 		# Create the main button with background from your UI sheet
 		var option_button = TextureButton.new()
@@ -286,6 +349,9 @@ func create_option_buttons(option_names: Array, current_index: int, category: St
 
 # Get sprite frames path for a category and index
 func get_sprite_frames_path(category: String, index: int) -> String:
+	if not player:
+		return ""
+		
 	match category:
 		"body":
 			if index < player.body_options.size():
@@ -305,20 +371,31 @@ func get_sprite_frames_path(category: String, index: int) -> String:
 func select_option(category: String, index: int):
 	print("Selected ", category, " option ", index)
 	
-	# Update the character data
+	# Store the old value to check if it actually changed
+	var old_value = 0
 	match category:
 		"body":
+			old_value = temp_character_data.body
 			temp_character_data.body = index
 		"hair":
+			old_value = temp_character_data.hair
 			temp_character_data.hair = index
 		"outfit":
+			old_value = temp_character_data.outfit
 			temp_character_data.outfit = index
 		"eyes":
+			old_value = temp_character_data.eyes
 			temp_character_data.eyes = index
 	
-	# Update preview and category buttons
-	update_preview()
-	update_category_buttons()
+	print("Updated temp_character_data: ", temp_character_data)
+	
+	# Only update if the value actually changed
+	if old_value != index:
+		# Update the main character preview
+		update_preview()
+		
+		# Only update the specific category button that changed
+		update_single_category_button(category, index)
 	
 	# Refresh the options panel to show new selection highlight
 	show_category_options(current_category)

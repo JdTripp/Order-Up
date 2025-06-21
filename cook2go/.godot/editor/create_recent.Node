@@ -1,3 +1,7 @@
+CollisionShape2D
+StaticBody2D
+Area2D
+Sprite2D
 TextureButton
 NinePatchRect
 Panel
@@ -8,7 +12,3 @@ ScrollContainer
 Label
 VBoxContainer
 HBoxContainer
-Sprite2D
-Camera2D
-CanvasLayer
-CollisionShape2D
