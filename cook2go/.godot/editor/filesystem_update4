@@ -8,3 +8,4 @@ res://outside_road.tscn
 res://customization_ui.tscn
 res://Map Artwork/Home Map.tscn
 res://lobby_room.gd
+res://customer.gd

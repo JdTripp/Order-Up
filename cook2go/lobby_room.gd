@@ -79,6 +79,9 @@ func _ready():
 	connect_door_area()
 	connect_wardrobe_area()
 	connect_hotdog_areas()
+	
+	# Start the customer system - the customer will automatically spawn the first order
+	print("Lobby room ready - customer should start automatically")
 
 func connect_furniture_areas():
 	# Connect to existing Area2D nodes you create in the editor
@@ -273,17 +276,23 @@ func handle_interaction():
 		fade_to_scene("res://outside_road.tscn")
 		return
 	
-	# CUSTOMER INTERACTION - FIXED: Clear player item after serving
+	# CUSTOMER INTERACTION - UPDATED: Only clear item if correct order
 	var customer = get_node_or_null("Customer")
 	if customer and player_item != ItemType.NONE:
 		var distance = player.global_position.distance_to(customer.global_position)
 		if distance < 150:
 			var item_name = get_item_name(player_item)
-			print("Serving customer with " + item_name)
-			customer.serve_customer(item_name)
-			# FIXED: Clear the player's item after serving
-			clear_player_item()
-			print("Item given to customer and removed from inventory")
+			print("Attempting to serve customer with " + item_name)
+			
+			# Check if customer accepts the item
+			var accepted = customer.serve_customer(item_name)
+			
+			if accepted:
+				# Only clear the item if customer accepted it
+				clear_player_item()
+				print("Customer accepted " + item_name + "! Item removed from inventory")
+			else:
+				print("Customer rejected " + item_name + "! You keep the item.")
 			return
 	
 	# FRIDGE - Get waffles
@@ -555,17 +564,24 @@ func schedule_new_customer():
 	if not can_spawn_customer:
 		return
 	can_spawn_customer = false
-	await get_tree().create_timer(5.0).timeout
+	print("Scheduling new customer in 3 seconds...")
+	await get_tree().create_timer(3.0).timeout
 	spawn_new_customer()
 
 func spawn_new_customer():
 	var customer = get_node_or_null("Customer")
 	if customer:
-		customer.reset_customer()
+		if customer.has_method("spawn_new_customer"):
+			customer.spawn_new_customer()  # Use new method if available
+		else:
+			customer.reset_customer()  # Fallback to old method
 		can_spawn_customer = true
+	else:
+		print("No customer node found!")
 
 func create_new_customer():
 	can_spawn_customer = true
+	# This will be called automatically by the customer script
 
 func fade_to_scene(scene_path):
 	var fade_overlay = ColorRect.new()
