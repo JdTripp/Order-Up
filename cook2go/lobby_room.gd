@@ -44,10 +44,10 @@ func _ready():
 	# Set up desks (EXACTLY like before - this works!)
 	desks = [$Desk1, $Desk2, $Desk3]
 	
-	# Initialize desk contents
-	desk_contents[0] = null  # Desk1 empty
-	desk_contents[1] = "waffle"  # Desk2 has waffle
-	desk_contents[2] = "plate"   # Desk3 has plate
+	# Initialize desk contents - NOW USING ItemType ENUM
+	desk_contents[0] = ItemType.NONE  # Desk1 empty
+	desk_contents[1] = ItemType.WAFFLE  # Desk2 has waffle
+	desk_contents[2] = ItemType.PLATE   # Desk3 has plate
 	
 	# Track which sprites are on which desks
 	desk_sprites[0] = null  # Desk1 empty
@@ -273,7 +273,7 @@ func handle_interaction():
 		fade_to_scene("res://outside_road.tscn")
 		return
 	
-	# CUSTOMER INTERACTION
+	# CUSTOMER INTERACTION - FIXED: Clear player item after serving
 	var customer = get_node_or_null("Customer")
 	if customer and player_item != ItemType.NONE:
 		var distance = player.global_position.distance_to(customer.global_position)
@@ -281,7 +281,9 @@ func handle_interaction():
 			var item_name = get_item_name(player_item)
 			print("Serving customer with " + item_name)
 			customer.serve_customer(item_name)
-			# Note: You'll need to update customer script to handle new item names
+			# FIXED: Clear the player's item after serving
+			clear_player_item()
+			print("Item given to customer and removed from inventory")
 			return
 	
 	# FRIDGE - Get waffles
@@ -460,11 +462,11 @@ func interact_with_desk():
 	var desk_item = desk_contents[near_desk]
 	var desk_pos = desks[near_desk].global_position + Vector2(0, -30)
 	
-	if player_item == ItemType.NONE and desk_item != null:
+	if player_item == ItemType.NONE and desk_item != ItemType.NONE:
 		# Pick up item from desk
 		pickup_item_from_desk(desk_item, near_desk)
 		
-	elif player_item != ItemType.NONE and desk_item == null:
+	elif player_item != ItemType.NONE and desk_item == ItemType.NONE:
 		# Place item on desk
 		place_item_on_desk(player_item, near_desk, desk_pos)
 		
@@ -472,41 +474,38 @@ func interact_with_desk():
 		# Combine items
 		combine_items_on_desk(near_desk, desk_pos)
 
-func can_combine_items(held_item: ItemType, desk_item) -> bool:
-	# Check if items can be combined
-	if held_item == ItemType.WAFFLE and desk_item == "plate":
+func can_combine_items(held_item: ItemType, desk_item: ItemType) -> bool:
+	# FIXED: Now properly compares ItemType enums
+	if held_item == ItemType.WAFFLE and desk_item == ItemType.PLATE:
 		return true
-	elif held_item == ItemType.PLATE and desk_item == "waffle":
+	elif held_item == ItemType.PLATE and desk_item == ItemType.WAFFLE:
 		return true
-	elif held_item == ItemType.BREAD_SAUSAGE and desk_item == "plate":
+	elif held_item == ItemType.BREAD_SAUSAGE and desk_item == ItemType.PLATE:
+		return true
+	elif held_item == ItemType.PLATE and desk_item == ItemType.BREAD_SAUSAGE:
+		return true
+	elif held_item == ItemType.GRILLED_SAUSAGE and desk_item == ItemType.BREAD:
+		return true
+	elif held_item == ItemType.BREAD and desk_item == ItemType.GRILLED_SAUSAGE:
 		return true
 	return false
 
-func pickup_item_from_desk(item_name: String, desk_id: int):
-	# Convert old string names to new ItemType
-	var item_type = ItemType.NONE
-	match item_name:
-		"waffle":
-			item_type = ItemType.WAFFLE
-		"plate":
-			item_type = ItemType.PLATE
-		"waffle_plate":
-			item_type = ItemType.WAFFLE_PLATE
-	
+func pickup_item_from_desk(item_type: ItemType, desk_id: int):
+	# FIXED: Now works with ItemType enum
 	give_item_to_player(item_type)
 	
 	# Clear desk
-	desk_contents[desk_id] = null
+	desk_contents[desk_id] = ItemType.NONE
 	var sprite_on_desk = desk_sprites[desk_id]
 	if sprite_on_desk:
 		sprite_on_desk.queue_free()
 		desk_sprites[desk_id] = null
 	
-	print("Picked up " + item_name + " from desk " + str(desk_id))
+	print("Picked up " + get_item_name(item_type) + " from desk " + str(desk_id))
 
 func place_item_on_desk(item_type: ItemType, desk_id: int, position: Vector2):
-	var item_name = get_item_name(item_type)
-	desk_contents[desk_id] = item_name
+	# FIXED: Now uses ItemType enum consistently
+	desk_contents[desk_id] = item_type
 	
 	# Create sprite on desk
 	var desk_sprite = Sprite2D.new()
@@ -518,20 +517,19 @@ func place_item_on_desk(item_type: ItemType, desk_id: int, position: Vector2):
 	desk_sprites[desk_id] = desk_sprite
 	
 	clear_player_item()
-	print("Placed " + item_name + " on desk " + str(desk_id))
+	print("Placed " + get_item_name(item_type) + " on desk " + str(desk_id))
 
 func combine_items_on_desk(desk_id: int, position: Vector2):
 	var desk_item = desk_contents[desk_id]
 	var result_item = ItemType.NONE
-	var result_name = ""
 	
-	# Determine combination result
-	if (player_item == ItemType.WAFFLE and desk_item == "plate") or (player_item == ItemType.PLATE and desk_item == "waffle"):
+	# FIXED: Determine combination result using ItemType enum
+	if (player_item == ItemType.WAFFLE and desk_item == ItemType.PLATE) or (player_item == ItemType.PLATE and desk_item == ItemType.WAFFLE):
 		result_item = ItemType.WAFFLE_PLATE
-		result_name = "waffle_plate"
-	elif player_item == ItemType.BREAD_SAUSAGE and desk_item == "plate":
+	elif (player_item == ItemType.BREAD_SAUSAGE and desk_item == ItemType.PLATE) or (player_item == ItemType.PLATE and desk_item == ItemType.BREAD_SAUSAGE):
 		result_item = ItemType.PLATED_HOTDOG
-		result_name = "hotdog_plate"
+	elif (player_item == ItemType.GRILLED_SAUSAGE and desk_item == ItemType.BREAD) or (player_item == ItemType.BREAD and desk_item == ItemType.GRILLED_SAUSAGE):
+		result_item = ItemType.BREAD_SAUSAGE
 	
 	if result_item != ItemType.NONE:
 		# Remove old items
@@ -541,7 +539,7 @@ func combine_items_on_desk(desk_id: int, position: Vector2):
 			sprite_on_desk.queue_free()
 		
 		# Create combined item on desk
-		desk_contents[desk_id] = result_name
+		desk_contents[desk_id] = result_item
 		var combined_sprite = Sprite2D.new()
 		add_child(combined_sprite)
 		combined_sprite.texture = get_item_texture(result_item)
@@ -550,7 +548,7 @@ func combine_items_on_desk(desk_id: int, position: Vector2):
 		combined_sprite.z_index = 4
 		desk_sprites[desk_id] = combined_sprite
 		
-		print("Combined items into " + result_name + " on desk " + str(desk_id))
+		print("Combined items into " + get_item_name(result_item) + " on desk " + str(desk_id))
 
 # Keep existing functions for customer system compatibility
 func schedule_new_customer():
